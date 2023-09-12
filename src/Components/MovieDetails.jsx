@@ -20,7 +20,7 @@ export default function MovieDetails () {
   const {id } = useParams
 const detailMovie = useLoaderData()
 console.log(detailMovie)
-
+ detailMovie.id
 const dateComponents = detailMovie.release_date.split('-');
 const year = parseInt(dateComponents[0]);
 const month = parseInt(dateComponents[1]) - 1; 
@@ -34,7 +34,7 @@ const utcDate = new Date(Date.UTC(year, month, day));
   const handleBeforeUnload = (event) => {
     event.preventDefault();
     
-    Navigate('/')
+    Navigate(`/movie/${detailMovie.id}`)
   };
 
   window.addEventListener('beforeunload', handleBeforeUnload);
