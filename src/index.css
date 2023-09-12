@@ -27,3 +27,56 @@
         transform: rotate(360deg);
     }
     } 
+    
+    .custom-popup{
+      position: fixed;
+      z-index: 8;
+      top: 12px;
+      background: red;
+      color: white;
+      padding: 5px;
+      border-radius: 10px;
+      animation: opacity 400ms linear ;
+    }
+    
+    @keyframes opacity {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+    }
+    
+    .opening {
+      overflow: hidden;
+      animation: open 1800ms ease-out
+      
+      
+    }
+    
+     @keyframes open {
+    0% {
+        opacity: 0;
+        transform: translate(0, 100%);
+    }
+    75% {
+      opacity: 0;
+      transform: translate(0, 5%)
+    }
+    100% {
+        opacity: 1;
+        transform: translate(0, 0);
+    }
+    }
+    
+    .subhero::before{
+      content:"";
+      position:absolute;
+      width: 100%;
+      height: 100%;
+      background: #0000008b;
+      left:0;
+      top: 0;
+      animation: open 1800ms ease-out
+    }

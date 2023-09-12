@@ -40,15 +40,15 @@ export default function Search () {
    
    return(
      
-     <div className=" relative">
+     <div className=" relative z-[2] ">
      
-     <MdSearch  className="absolute text-xl top-2 left-1 text-slate-400 "/>
+     <MdSearch  className="absolute text-xl top-2 right-1 text-slate-400 "/>
               <input
             type="text"
             name=""
             id=""
-            placeholder="search"
-            className="shadow-md p-1 px-6 rounded-3xl  outline-none border-2 border-white text-black text-sm"
+            placeholder="what do you want to watch"
+            className="shadow-md transition-all focus:bg-white  duration-[500ms] linear p-1 px-6 rounded-3xl  outline-none border-2 border-white bg-[transparent] text-black text-sm"
             value={searchTerm}
             onChange={(e) => {
               setSearchClose(false)
@@ -57,7 +57,7 @@ export default function Search () {
             }
         />
          { !searchClose && searched.length > 0 ? 
-        <ul className= " absolute w-[300px] left-[-15%] items-start p-4  text-sm self-center flex flex-col mt-[5rem] bg-white text-black"> 
+        <ul className= " absolute w-[300px] left-[-15%] items-start p-4  text-sm self-center z-[5] flex flex-col mt-[5rem] bg-white text-black"> 
       { loading?   <span class="loader"></span>:""}
       
        {  searched.map((movie) => (
@@ -71,7 +71,7 @@ export default function Search () {
         </ul>
         : '' } 
         
-        { searchTerm && !searchClose  &&<span className= " absolute w-[300px] items-center left-[-15%] p-4 gap-5 text-sm  flex flex-col mt-[5rem] bg-white text-black"> </span> }
+        { searchTerm && !searchClose  ?<span className= " absolute w-[300px] items-center left-[-15%] p-4 gap-5 text-sm  flex flex-col mt-[5rem] bg-white text-black"> No Result</span>:""}
         <button 
         onClick={() => {
           setSearchClose(true)
