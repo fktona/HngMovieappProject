@@ -30,11 +30,13 @@ const utcDate = new Date(Date.UTC(year, month, day));
     <div className="  text-black top-0 w-f"> 
          <ul className=" ">
         
-          <li className="absolute openng w-full " key={detailMovie.id}
+          <li className="absolute  openng w-full " key={detailMovie.id}
           >
+          <div className=" relative subhero">
              <img src={`https://image.tmdb.org/t/p/w780${detailMovie.backdrop_path}`}
           alt={detailMovie.title}
-          className={`relative z-[-1] left-0 top-0 $ w-full h-[40vh]`}/>
+          className={`relative z-[-1] left-0 top-0 $ w-full h-[40vh]`}/>      
+          </div>
               <h3 
             data-testid="movie-title"className="text-sm mx-auto p-3 pb-1 text-xl w-fit font-semibold">{detailMovie.title}</h3>
           <div className='relative flex justify-between p-2 items-center'>

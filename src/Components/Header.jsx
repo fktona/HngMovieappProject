@@ -2,7 +2,7 @@ import { useState ,useEffect } from "react"
 import { MdSearch , MdClose ,MdMenu} from 'react-icons/md'
 import { resources} from '../assets/resources'
 import { searchResult} from '../assets/resources'
-import Search from "./Search"
+
 import {useLoaderData , useParams}from 'react-router-dom'
 
 
@@ -56,35 +56,24 @@ setSearched(() => searchList )
   
   
   
- //const  showheader = location.pathname === "/" ||   location.pathname === "/search"
-   
-   
-   const ds = location.pathname.includes('movie')
+
   
    return(
      
-     <div className={`relative  ${ds ?' ': 'h-[40vh]'}`}> 
+     <div className="relative  h-[40vh]"> 
      
       
              <img src={`https://image.tmdb.org/t/p/w780${headerMovie.backdrop_path}`}
           alt={headerMovie.title}
-          className={`absolute z-[-1] ${ds  ? 'hidden' :''} w-full h-full`}/>
-     <div className=" subhero w-full   absolute h-[40vh] p-4 flex items-baseline justify-between  font-semibold text-md text-white">
-          
-     <h4 className="z-[2] relative">MovieBox</h4>
+          className="absolute subhero w-full h-full"/>
+
      
-   <Search/>
-     <div className=" p-1 z-[2]  bg-red-500 top-2 relative rounded-full">
-     <MdMenu />
+     <div className="text-white flex flex-col justify-end items-start subhero h-full w-full absolute  py-4 px-3 z-1 bottom-0 "> 
+     <h2  className=" text-xl w-[45%] leading-[24px] mb-2 font-bold relative" > {headerMovie.title}</h2>
+     <h2 className="w-[45%] text-[8px] leading-[10px] font-bold relative"> {headerMovie.overview}</h2>
+     <button className="relative bg-red-500 px-2 py-1  mt-2 drop-shadow-lg rounded-md"> watch trailer </button>
      </div>
-     </div>
-     { !ds?
-     <div className="text-white absolute  py-4 px-3 z-1 bottom-0 w-[50%]"> 
-     <h2  className=" text-xl leading-[24px] mb-2 font-bold relative" > {headerMovie.title}</h2>
-     <h2 className=" text-[8px] leading-[10px] font-bold relative"> {headerMovie.overview}</h2>
-     <button className="relative bg-red-500 px-2 py-1  mt-2 mx-auto drop-shadow-lg rounded-md"> watch trailer </button>
-     </div>
-     :null}
+     
      </div> 
      )
  }

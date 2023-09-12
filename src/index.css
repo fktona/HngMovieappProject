@@ -50,7 +50,7 @@
     
     .opening {
       overflow: hidden;
-      animation: open 1800ms ease-out
+      animation: open 1500ms ease-out
       
       
     }
@@ -74,9 +74,11 @@
       content:"";
       position:absolute;
       width: 100%;
-      height: 100%;
+      height: 40vh;
       background: #0000008b;
       left:0;
       top: 0;
-      animation: open 1800ms ease-out
+      
+      
+      animation: open 1000ms ease-out
     }
