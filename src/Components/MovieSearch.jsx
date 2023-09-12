@@ -1,5 +1,5 @@
 import { useState , useEffect , useContext } from "react"
-import { topRatedMovies} from '../assets/resources'
+
 import {useNavigate } from "react-router-dom"
 import { AppContext } from '../assets/AppContext'
 

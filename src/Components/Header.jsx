@@ -1,9 +1,24 @@
 import { useState ,useEffect } from "react"
 import { MdSearch , MdClose ,MdMenu} from 'react-icons/md'
-import { nowPlayingMovies} from '../assets/resources'
+import { resources} from '../assets/resources'
 import { searchResult} from '../assets/resources'
 import Search from "./Search"
 import {useLoaderData , useParams}from 'react-router-dom'
+
+
+// export const fetchNowPlayingMovies = async () => {
+//   try {
+//     const nowPlayingMoviesData = await resources('movie/top_rated', { page: 1 });
+//     console.log(nowPlayingMoviesData.results)
+//     return nowPlayingMoviesData.results;
+    
+//   } catch (error) {
+//     // Handle any errors that may occur during the fetch
+//     console.error('Error fetching now-playing movies:', error);
+//     throw error; // Rethrow the error to handle it further up the call stack if needed
+//   }
+// };
+
 
 export default function Header () {
    
@@ -13,11 +28,17 @@ export default function Header () {
    const [loading, setLoading] = useState(false);
    const [close, setClose] = useState(false);
    
+  // const headMovie = useLoaderData()
+  // console.log(n)
+  // //setHeaderMovie(MoviesList)
    
-   useEffect(() => {
-const MoviesList =  nowPlayingMovies.results
+  useEffect(() => {
+   async function  ff () {
+const MoviesList = await  resources('movie/popular', { page: 1 });
 console.log(MoviesList)
-setHeaderMovie(() => MoviesList[5] )
+setHeaderMovie(() => MoviesList.results[5] )
+}
+ff()
   },[])
    
    
@@ -41,8 +62,10 @@ setSearched(() => searchList )
    const ds = location.pathname.includes('movie')
   
    return(
+     
      <div className={`relative  ${ds ?' ': 'h-[40vh]'}`}> 
      
+      
              <img src={`https://image.tmdb.org/t/p/w780${headerMovie.backdrop_path}`}
           alt={headerMovie.title}
           className={`absolute z-[-1] ${ds  ? 'hidden' :''} w-full h-full`}/>
@@ -60,8 +83,8 @@ setSearched(() => searchList )
      <h2  className=" text-xl leading-[24px] mb-2 font-bold relative" > {headerMovie.title}</h2>
      <h2 className=" text-[8px] leading-[10px] font-bold relative"> {headerMovie.overview}</h2>
      <button className="relative bg-red-500 px-2 py-1  mt-2 mx-auto drop-shadow-lg rounded-md"> watch trailer </button>
-     </div>:null }
-     
+     </div>
+     :null}
      </div> 
      )
  }

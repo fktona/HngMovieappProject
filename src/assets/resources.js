@@ -30,13 +30,13 @@ export const resources = async (resourceName, queryParams = {}) => {
   }
 };
 
-export const topRatedMovies = await resources('movie/top_rated', { page: 1 });  
+// export const topRatedMovies = await resources('movie/top_rated', { page: 1 });  
 
 export const movieDetail = async (id) => { await resources(`movie/` +id)
   
 }
 
-export const nowPlayingMovies = await resources('movie/now_playing', { page: 1 }); 
+// export const nowPlayingMovies = await resources('movie/now_playing', { page: 1 }); 
 
 export const searchResult = async (queryParams = {}) => {
 await resources('search/movie' ,queryParams)

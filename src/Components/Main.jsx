@@ -1,13 +1,25 @@
 import { useState , useEffect } from "react"
-import { topRatedMovies} from '../assets/resources'
+import { resources} from '../assets/resources'
 import { MdFavorite, MdFavoriteBorder} from 'react-icons/md'
 import {useLoaderData , useNavigate , NavLink}from 'react-router-dom'
 
 
-export const loadingTopMovie = async () => {
-   const topMoviesList = await topRatedMovies.results
-   return topMoviesList.slice(0,10)
- }
+// export const loadingTopMovie = async () => {
+//   const topMoviesList = await topRatedMovies.results
+//   return topMoviesList.slice(0,10)
+// }
+ 
+ export const loadingTopMovie = async () => {
+  try {
+    const topRatedMoviesData = await resources('movie/top_rated', { page: 1 });
+    const topMoviesList = topRatedMoviesData.results.slice(0, 10);
+    return topMoviesList;
+  } catch (error) {
+    // Handle any errors that may occur during the fetch
+    console.error('Error fetching top-rated movies:', error);
+    throw error; // Rethrow the error to handle it further up the call stack if needed
+  }
+};
 
 export default function Homepage ()  {
  const Navigate = useNavigate()
@@ -33,7 +45,7 @@ export default function Homepage ()  {
       setPopupMessage('');
     }, 3000); 
   };
-
+console.log(topMovies)
  
  return (
    
