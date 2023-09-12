@@ -13,6 +13,10 @@ export const loadingMovieDetails = async ({params}) => {
 
  
 export default function MovieDetails () {
+  
+
+  
+  
   const {id } = useParams
 const detailMovie = useLoaderData()
 console.log(detailMovie)
@@ -25,6 +29,20 @@ const day = parseInt(dateComponents[2]);
 const utcDate = new Date(Date.UTC(year, month, day));
 
  const Navigate = useNavigate()
+ 
+ useEffect(() => {
+  const handleBeforeUnload = (event) => {
+    event.preventDefault();
+    
+    Navigate('/search')
+  };
+
+  window.addEventListener('beforeunload', handleBeforeUnload);
+
+  // return () => {
+  //   window.removeEventListener('beforeunload', handleBeforeUnload);
+  // };
+}, []);
 
   return (
     <div className="  text-black top-0 w-f"> 
