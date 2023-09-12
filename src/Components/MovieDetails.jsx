@@ -34,14 +34,14 @@ const utcDate = new Date(Date.UTC(year, month, day));
   const handleBeforeUnload = (event) => {
     event.preventDefault();
     
-    Navigate('/search')
+    Navigate('/')
   };
 
   window.addEventListener('beforeunload', handleBeforeUnload);
 
-  // return () => {
-  //   window.removeEventListener('beforeunload', handleBeforeUnload);
-  // };
+  return () => {
+    window.removeEventListener('beforeunload', handleBeforeUnload);
+  };
 }, []);
 
   return (
