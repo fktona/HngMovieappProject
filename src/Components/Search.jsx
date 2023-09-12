@@ -76,7 +76,8 @@ export default function Search () {
         onClick={() => {
           setSearchClose(true)
           searched.length > 0 ?
-          Navigate("search"): setSearchTerm('')}}className="bg-red-500 block  mt-3 mx-auto text-lg py-1 px-3 rounded-xl text_white">{ searched.length > 0 || !searchTerm  ? 'search':'cancel'} </button>
+          Navigate("search"): setSearchTerm('')}}className="bg-red-500 block  mt-2 text-sm mx-auto text-lg py-1 px-3 rounded-xl text_
+          -white">{ searched.length > 0 || !searchTerm  ? 'search':'cancel'} </button>
      </div>
      )
  }

@@ -1,7 +1,7 @@
 import { useState , useEffect } from "react"
 import { resources} from '../assets/resources'
 import { MdFavorite, MdFavoriteBorder} from 'react-icons/md'
-import {useLoaderData , useNavigate , NavLink}from 'react-router-dom'
+import {useLoaderData , useNavigate , Link}from 'react-router-dom'
 import Header from "./Header"
 
 
@@ -74,9 +74,9 @@ console.log(topMovies)
             <p className="text-slate-500 font-semibold"data-testid="movie-release-date">Release Date: {movie.release_date}</p>
             {/* Add more movie details as needed */}
             
-                 <button onClick={ () => Navigate(`movie/${movie.id.toString()}`)}
+                 <Link to={`movie/${movie.id.toString()}`}
                  
-                 className="relative bg-red-500 px-2 py-1  mt-2 mx-auto text-white drop-shadow-lg rounded-md"> View Details</button>
+                 className="relative bg-red-500 px-2 py-1  mt-2 mx-auto text-white drop-shadow-lg rounded-md"> View Details</Link>
                  
           </li>
         ))}

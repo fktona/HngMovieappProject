@@ -1,6 +1,7 @@
 import { useState } from "react"
 import Header from "./Components/Header"
 import Homepage from "./Components/Main"
+import Footer from "./Components/Footer"
 import Nav from "./Components/Nav"
 import { AppContext } from './assets/AppContext'
 import { NavLink, Outlet, useLocation ,useRoutes } from "react-router-dom";
@@ -13,8 +14,8 @@ export default function RootLayout() {
      <div> 
      <AppContext.Provider value={{searched, setSearched ,searchTerm, setSearchTerm}}>
      <Nav />
-    
     <Outlet />
+    <Footer />
      </AppContext.Provider>
      </div> 
 
