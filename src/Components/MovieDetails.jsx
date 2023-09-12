@@ -34,7 +34,7 @@ const utcDate = new Date(Date.UTC(year, month, day));
   const handleBeforeUnload = (event) => {
     event.preventDefault();
     
-    Navigate(`/movie/${detailMovie.id}`)
+   // Navigate(`/movie/${detailMovie.id}`)
   };
 
   window.addEventListener('beforeunload', handleBeforeUnload);
