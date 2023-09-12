@@ -30,7 +30,7 @@ const utcDate = new Date(Date.UTC(year, month, day));
     <div className="  text-black top-0 w-f"> 
          <ul className=" ">
         
-          <li className="absolute  openng w-full " key={detailMovie.id}
+          <li className="relative openng w-full " key={detailMovie.id}
           >
           <div className=" relative subhero">
              <img src={`https://image.tmdb.org/t/p/w780${detailMovie.backdrop_path}`}

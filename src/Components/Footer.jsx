@@ -9,19 +9,19 @@ export default function Footer() {
    const [searchTerm, setSearchTerm] = useState('');
    
    return(
-        <div className=" flex flex-col relative w-full justify-center items-center mt-6 gap-3 p-2">
-          <div className="flex w-full gap-4 p-3 items-center justify-center ">
+        <div className=" flex flex-col   relative w-full justify-center items-center  mt-5 gap-3 p-2">
+          <div className="flex w-full gap-4 p-2 items-center justify-center ">
           <AiFillFacebook /> 
           <AiFillTwitterSquare /> 
           <AiFillInstagram /> 
           <AiFillYoutube /> 
           </div>
-          <div className="flex w-full gap-4 p-3 items-center justify-center text-sm">
+          <div className="flex w-full gap-4 p-2 items-center justify-center text-sm">
           <p>Condition of Use </p>
           <p>Privacy & Policy</p>
           <p>Press Room</p>
           </div>
-          <p className="flex w-full gap-4 p-3 items-center justify-center text-slate-500">
+          <p className="flex w-full gap-4 p-2 items-center justify-center text-slate-500">
            © 2023 MovieBox by Faith Adetone
           </p>
      </div>

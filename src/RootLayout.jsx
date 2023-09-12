@@ -11,11 +11,13 @@ export default function RootLayout() {
    const [searchTerm, setSearchTerm] = useState('');
    
    return(
-     <div> 
+     <div className='relative'> 
      <AppContext.Provider value={{searched, setSearched ,searchTerm, setSearchTerm}}>
      <Nav />
     <Outlet />
+    
     <Footer />
+  
      </AppContext.Provider>
      </div> 
 
