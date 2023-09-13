@@ -8,12 +8,13 @@ import Header from "./Components/Header"
 import './index.css'
 import ErrorPage from "./Error";
 import {
+  createHashRouter,
   createBrowserRouter,
   RouterProvider,
   Routes,
 } from "react-router-dom";
 
-const router = createBrowserRouter([
+const router = createHashRouter([
   {
     path: "/",
     element: <App />,

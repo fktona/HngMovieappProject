@@ -31,13 +31,7 @@ const utcDate = new Date(Date.UTC(year, month, day));
  const Navigate = useNavigate()
  
 
-  const handleBeforeUnload = (event) => {
-   
-    
-    Navigate(`/`)
-  };
-
-     window.addEventListener('beforeunload', handleBeforeUnload);
+  
 
  
 
