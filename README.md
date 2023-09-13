@@ -1,6 +1,5 @@
 # Hng Movie App
 https://hng-movie-app.netlify.app/
-A brief description of your project.
 
 ## Table of Contents
 
@@ -8,11 +7,8 @@ A brief description of your project.
   - [Prerequisites](#prerequisites)
   - [Installation](#installation)
 - [Running the Project](#running-the-project)
-- [Deployment](#deployment)
 - [Built With](#built-with)
-- [Contributing](#contributing)
-- [License](#license)
-- [Acknowledgments](#acknowledgments)
+
 
 ## Getting Started
 
@@ -36,8 +32,10 @@ Step-by-step instructions on how to install and set up your project.
    
    npm Installation
    
-   # Start the development server
-npm run dev
+    Start the development server
+    npm run dev
 
 
-   
+   ##Built With
+   - #vite with react 
+   - #Tailwind css
