@@ -39,9 +39,7 @@ const utcDate = new Date(Date.UTC(year, month, day));
 
   window.addEventListener('beforeunload', handleBeforeUnload);
 
-  return () => {
-    window.removeEventListener('beforeunload', handleBeforeUnload);
-  };
+  
 }, []);
 
   return (
