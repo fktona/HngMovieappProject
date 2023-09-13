@@ -17,6 +17,10 @@ This project uses Api ffrom TMBD to fetch movie list and user can search for the
 ### Prerequisites
 
 - Node.js (version v16++)
+- 
+   ##Built With
+   - vite with react 
+   - Tailwind css
 
 ### Installation
 
@@ -27,15 +31,13 @@ Step-by-step instructions on how to install and set up your project.
    ```shell
    git clone git@github.com:fktona/HngMovieappProject.git
    
-   
+ 
    cd your-project
    
    npm Installation
+   npm install #ti install dependencies
    
     Start the development server
     npm run dev
 
 
-   ##Built With
-   - #vite with react 
-   - #Tailwind css
