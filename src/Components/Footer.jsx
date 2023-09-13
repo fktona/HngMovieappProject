@@ -9,7 +9,7 @@ export default function Footer() {
    const [searchTerm, setSearchTerm] = useState('');
    
    return(
-        <div className=" flex flex-col   relative w-full justify-center items-center  mt-5 gap-3 p-2">
+        <div className=" flex flex-col  font-lato relative w-full justify-center items-center  mt-5 gap-3 p-2">
           <div className="flex w-full gap-4 p-2 items-center justify-center ">
           <AiFillFacebook /> 
           <AiFillTwitterSquare /> 

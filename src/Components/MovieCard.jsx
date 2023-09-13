@@ -28,7 +28,7 @@ export default function MovieCard ({movie}) {
   return(
     <>
        {popupMessage && (
-        <div className="custom-popup">
+        <div className="custom-popup bg-red-600">
           {popupMessage}
         </div>)}
       
@@ -40,16 +40,16 @@ export default function MovieCard ({movie}) {
           data-testid="movie-poster" />
           
           <p onClick={() =>addFav(movie.title) }
-          className="text-2xl absolute bg-white/[.35] p-2 top-6 right-6 text-red-500 rounded-full mx-auto">
+          className="text-2xl absolute bg-white/[.35] p-2 top-6 right-6 text-red-600 rounded-full mx-auto">
           { fav.find((o) => o === movie.title)? <MdFavorite />:<MdFavoriteBorder /> }</p>
          <h3 
-            data-testid="movie-title"className="text-sm font-semibold font-mono"> {movie.title}</h3>
-            <p className="text-slate-500 text-[12px] font-semibold"data-testid="movie-release-date">Release Date: {movie.release_date}</p>
+            data-testid="movie-title"className="text-sm font-semibold font-robo"> {movie.title}</h3>
+            <p className="text-slate-500 font-mono text-[12px] font-semibold"data-testid="movie-release-date">Release Date: {movie.release_date}</p>
             {/* Add more movie details as needed */}
             
-                 <Link to={`/movie/${movie.id.toString()}`}
+                 <Link to={`/movies/${movie.id.toString()}`}
                  
-                 className="relative bg-red-500 px-2 py-1  mt-2 mx-auto text-white drop-shadow-lg rounded-md"> View Details</Link>
+                 className="relative bg-red-500 px-2 py-1  mt-2 mx-auto font-robo font-semibold text-white drop-shadow-lg rounded-md"> View Details</Link>
                  
           </li>
           </>

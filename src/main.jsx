@@ -31,7 +31,7 @@ const router = createHashRouter([
        loader:loadingTopMovie,
      },
      {
-       path: "movie",
+       path: "movies",
        children:[ {
        path:":id",
       element:<MovieDetails/>,
