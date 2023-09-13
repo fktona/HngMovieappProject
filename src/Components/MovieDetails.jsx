@@ -30,17 +30,16 @@ const utcDate = new Date(Date.UTC(year, month, day));
 
  const Navigate = useNavigate()
  
- useEffect(() => {
+
   const handleBeforeUnload = (event) => {
    
     
     Navigate(`/`)
   };
 
-  window.addEventListener('beforeunload', handleBeforeUnload);
+     window.addEventListener('beforeunload', handleBeforeUnload);
 
-  
-}, []);
+ 
 
   return (
     <div className="  text-black top-0 w-f"> 
