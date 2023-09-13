@@ -44,7 +44,7 @@ const utcDate = new Date(Date.UTC(year, month, day));
           <div className=" subhero relative ">
              <img src={`https://image.tmdb.org/t/p/w780${detailMovie.backdrop_path}`}
           alt={detailMovie.title}
-          className={`relative z-[-1] left-0 top-0 $ w-full h-[40vh]`}/>      
+          className={`relative z-[-1] left-0 top-0 $ w-full h-[60vh] md:h-[80vh] `}/>      
           </div>
               <h3 
             data-testid="movie-title"className=" mx-auto p-3 pb-1 text-[1.5rem] mt-8  mb-8 w-fit text-red-600 font-robo font-semibold">{detailMovie.title}</h3>

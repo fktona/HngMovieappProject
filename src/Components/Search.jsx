@@ -13,8 +13,8 @@ export default function Search () {
    const [loading, setLoading] = useState(false);
    
    const handleMovieTitleClick = (title) => {
-    setSearchTerm(title); // Assuming setSearchTerms is a function in your context to update search terms
-    Navigate('search'); // Navigate back to the previous page after updating search terms
+    setSearchTerm(title);
+    Navigate('search');
     setSearchClose(true)
   };
    
