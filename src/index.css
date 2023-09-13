@@ -1,6 +1,10 @@
+  @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&family=Lato:wght@300;400;700;900&family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,800;0,900;1,600;1,700&family=Poppins:wght@300;400;500;600;700;800;900&family=Roboto:wght@400;500;700;900&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
 
 
 
@@ -93,3 +97,20 @@
 .ani{
   animation: opacity 1500ms linear ;
 }
+
+.font-mono{
+ font-family: 'Dancing Script', cursive;
+ font-weight: 600;
+
+}
+
+.font-mono{
+ font-family: 'Roboto' ;
+}
+/*
+font-family: 'Dancing Script', cursive;
+font-family: 'Lato', sans-serif;
+font-family: 'Montserrat', sans-serif;
+font-family: 'Poppins', sans-serif;
+font-family: 'Roboto', sans-serif;
+ */

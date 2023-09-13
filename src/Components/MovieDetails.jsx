@@ -47,12 +47,12 @@ const utcDate = new Date(Date.UTC(year, month, day));
           className={`relative z-[-1] left-0 top-0 $ w-full h-[40vh]`}/>      
           </div>
               <h3 
-            data-testid="movie-title"className="text-sm mx-auto p-3 pb-1 text-[1.5rem] mt-8  mb-8 w-fit text-red-500 font-semibold">{detailMovie.title}</h3>
+            data-testid="movie-title"className=" mx-auto p-3 pb-1 text-[1.5rem] mt-8  mb-8 w-fit text-red-500 font-semibold">{detailMovie.title}</h3>
           <div className='relative   flex flex-col gap-4 items-center justify-between p-2  items-center'>
         
             <p className="text-gray-600 text-sm shadow-md p-2 font-semibold "data-testid="movie-release-date">Release Date: {utcDate.toISOString()}</p>
             <p className="text-gray-600 texthsm shadow-md p-2 font-semibold"data-testid="movie-runtime">Runtime: {detailMovie.runtime}min</p> </div>
-            <p className="text-slate-800 p-3 text-sm leading-[15px] m-4 shadow-md font-semibold"data-testid="movie-overview"><p className="mx-auto w-fit text-xl p-2">Overview</p> {detailMovie.overview}</p>
+            <p className="text-slate-800 relative p-3 text-sm leading-[15px] m-4 shadow-md md:max-w-[70vw] mx-auto flex justify-between gap-3 font-semibold"data-testid="movie-overview"><p className="mx-auto flex items-center  w-fit bg-red-500 text-white text-2xl relative left-0 p-2"><p className=" md:rotate-0 rotate-90">Overview</p></p> {detailMovie.overview}</p>
             {/* Add more movie details as needed */}
                              <button
         onClick={() => Navigate(-1)}
