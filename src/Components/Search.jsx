@@ -40,7 +40,7 @@ export default function Search () {
    
    return(
      
-     <div className=" relative z-[2] ">
+     <div className=" relative z-[99999] ">
      
      <MdSearch  className="absolute text-xl top-2 right-1 text-slate-400 "/>
               <input
@@ -48,7 +48,7 @@ export default function Search () {
             name=""
             id=""
             placeholder="what do you want to watch"
-            className="shadow-md transition-all focus:bg-white  duration-[500ms] linear p-1 px-6 rounded-3xl  outline-none border-2 border-white bg-[transparent] text-black text-sm"
+            className={`shadow-md transition-all focus:bg-white  duration-[500ms]  linear p-1 px-6 rounded-3xl  outline-none border-2 border-white bg-[transparent] ${searchTerm? 'bg-white':''} text-black text-sm`}
             value={searchTerm}
             onChange={(e) => {
               setSearchClose(false)
@@ -64,19 +64,19 @@ export default function Search () {
          
         <li key={movie.id}
         onClick={() => handleMovieTitleClick(movie.title)}
-        className=" border-b-[1px] px-1 py-3 hover:bg-slate-700 border-black hover:text-white w-full">
+        className=" border-b-[1px] relative px-1 py-3 hover:bg-slate-700 border-black hover:text-white w-full">
         <h3> {movie.title} </h3>
         </li>
          ))}
         </ul>
         : '' } 
         
-        { searchTerm && !searchClose  ?<span className= " absolute w-[300px] items-center left-[-15%] p-4 gap-5 text-sm  flex flex-col mt-[5rem] bg-white text-black"> No Result</span>:""}
+        { searchTerm && !searchClose  ?<span className= " absolute w-[300px] items-center  left-[-15%] p-4 gap-5 text-sm  flex flex-col mt-[5rem] bg-white text-black"> No Result</span>:""}
         <button 
         onClick={() => {
           setSearchClose(true)
           searched.length > 0 ?
-          Navigate("search"): setSearchTerm('')}}className="bg-red-500 block  mt-2 text-sm mx-auto text-lg py-1 px-3 rounded-xl text_
+          Navigate("search"): setSearchTerm('')}}className="bg-red-500 block  mt-2 text-sm mx-auto text-lg py-1 px-3 rounded-xl 
           -white">{ searched.length > 0 || !searchTerm  ? 'search':'cancel'} </button>
      </div>
      )

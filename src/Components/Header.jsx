@@ -1,45 +1,53 @@
 import { useState ,useEffect } from "react"
-import { MdSearch , MdClose ,MdMenu} from 'react-icons/md'
+import { MdSearch , MdClose ,MdMenu } from 'react-icons/md'
+import { AiFillYoutube} from 'react-icons/ai'
 import { resources} from '../assets/resources'
 import { searchResult} from '../assets/resources'
 
 import {useLoaderData , useParams}from 'react-router-dom'
 
 
-// export const fetchNowPlayingMovies = async () => {
-//   try {
-//     const nowPlayingMoviesData = await resources('movie/top_rated', { page: 1 });
-//     console.log(nowPlayingMoviesData.results)
-//     return nowPlayingMoviesData.results;
-    
-//   } catch (error) {
-//     // Handle any errors that may occur during the fetch
-//     console.error('Error fetching now-playing movies:', error);
-//     throw error; // Rethrow the error to handle it further up the call stack if needed
-//   }
-// };
+
 
 
 export default function Header () {
    
-   const [searchTerm, setSearchTerm] = useState('');
-   const [headerMovie, setHeaderMovie] = useState('');
-   const [searched, setSearched] = useState('');
-   const [loading, setLoading] = useState(false);
-   const [close, setClose] = useState(false);
-   
-  // const headMovie = useLoaderData()
-  // console.log(n)
-  // //setHeaderMovie(MoviesList)
-   
+const [searchTerm, setSearchTerm] = useState('');
+  const [headerMovieIndex, setHeaderMovieIndex] = useState(5); // Initial index
+  const [searched, setSearched] = useState('');
+  const [loading, setLoading] = useState(false);
+  const [close, setClose] = useState(false);
+  const [MoviesList, setMoviesList] = useState([]);
+  const [isFadingOut, setIsFadingOut] = useState(false);
+
   useEffect(() => {
-   async function  ff () {
-const MoviesList = await  resources('movie/popular', { page: 1 });
-console.log(MoviesList)
-setHeaderMovie(() => MoviesList.results[5] )
-}
-ff()
-  },[])
+    async function fetchData() {
+      const MoviesListData = await resources('movie/popular', { page: 1 });
+      console.log(MoviesListData);
+      setMoviesList(MoviesListData);
+    }
+
+    fetchData();
+  }, []);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setIsFadingOut(true); // Start fading out
+
+      setTimeout(() => {
+        setHeaderMovieIndex((prevIndex) => {
+          const nextIndex = (prevIndex + 1) % (MoviesList.results ? MoviesList.results.length : 0);
+          setIsFadingOut(false); // Stop fading out
+          return nextIndex;
+        });
+      }, 3500); // Wait for 500 milliseconds before changing the index
+
+    }, 22000); // 3000 milliseconds = 3 seconds
+
+    return () => clearInterval(interval);
+  }, [MoviesList.results]);
+
+  const headerMovie = MoviesList.results && MoviesList.results[headerMovieIndex];
    
    
    
@@ -60,19 +68,21 @@ setSearched(() => searchList )
   
    return(
      
-     <div className="relative  h-[40vh]"> 
-     
-      
+     <div className="relative  h-[70vh]"> 
+     {MoviesList.results && MoviesList.results.length > 0 && (
+  <div className= {` ${isFadingOut?'fadeOut ':'ani'} absolute w-full h-full subhero `}>
+
              <img src={`https://image.tmdb.org/t/p/w780${headerMovie.backdrop_path}`}
           alt={headerMovie.title}
-          className="absolute subhero w-full h-full"/>
+          className="absolute w-full h-[70vh]"/>
 
      
-     <div className="text-white flex flex-col justify-end items-start subhero h-full w-full absolute  py-4 px-3 z-1 bottom-0 "> 
-     <h2  className=" text-xl w-[45%] leading-[24px] mb-2 font-bold relative" > {headerMovie.title}</h2>
-     <h2 className="w-[45%] text-[8px] leading-[10px] font-bold relative"> {headerMovie.overview}</h2>
-     <button className="relative bg-red-500 px-2 py-1  mt-2 drop-shadow-lg rounded-md"> watch trailer </button>
+     <div className="text-white flex flex-col justify-end items-start  h-full w-full md:p-4 absolute  py-4 px-3 z-[8] bottom-8"> 
+     <h2  className=" text-2xl   md:bottom-[40%] w-[55%] leading-[24px md:leading-normal mb-2 md:text-[35px] md:mb-4  font-bold relative" > {headerMovie.title}</h2>
+     <h2 className="w-[55%] md:bottom-[40%] md:text-[14px] text-[10px] md:leading-normal leading-[10px] font-bold relative"> {headerMovie.overview}</h2>
+     <button className="relative md:bottom-[40%] md:text-lg bg-red-500 px-2 py-1 flex items-center  gap-2 mt-2 drop-shadow-lg rounded-md">     <AiFillYoutube /> Watch Trailer </button>
      </div>
+     </div>)}
      
      </div> 
      )

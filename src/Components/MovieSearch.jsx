@@ -15,7 +15,7 @@ export default function MovieSeached ()  {
  
  return (
    
-   <div className="p-2 text-center">                 <button
+   <div className="p-2 text-center relative top-[6rem]">                 <button
         onClick={() => {
           Navigate('/')
           
