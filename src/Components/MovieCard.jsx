@@ -1,5 +1,5 @@
 import { useState , useEffect } from "react"
-import { MdFavorite, MdFavoriteBorder} from 'react-icons/md'
+import { MdFavorite, MdFavoriteBorder ,MdEast} from 'react-icons/md'
 import {useLoaderData , useNavigate , Link}from 'react-router-dom'
 
 export default function MovieCard ({movie}) {
@@ -32,7 +32,7 @@ export default function MovieCard ({movie}) {
           {popupMessage}
         </div>)}
       
-              <li className=" flex flex-col gap-1 relative justify-between  max-w-[300px] mb-4 p-1  shadow-lg" key={movie.id}
+              <li className=" flex  flex-col gap-1 relative justify-between  max-w-[300px] mb-4 p-1  shadow-lg" key={movie.id}
           data-testid="movie-card">
           
           <img src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
@@ -50,7 +50,7 @@ export default function MovieCard ({movie}) {
             
                  <Link to={`/movies/${movie.id.toString()}`}
                  
-                 className="relative bg-red-500 px-2 py-1  mt-2 mx-auto font-robo font-semibold text-white drop-shadow-lg rounded-md"> View Details</Link>
+                 className="bg-red-500 px-2 py-1   absolute  text-2xl font-semibold text-white drop-shadow-lg rounded-sm"> <MdEast /></Link>
                  
           </li>
           </>

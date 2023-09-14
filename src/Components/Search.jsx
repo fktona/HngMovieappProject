@@ -40,17 +40,13 @@ export default function Search () {
    
   return(
      
-    <div className=" relative md:grow ">
-    <label htmlFor="searching"
-    className="absolute text-xl  md:mx-2 top-[15px] right-2 text-white ">
-    <MdSearch  />
-    </label>
+    <div className=" relative  flex md:grow ">
               <input
             type="text"
             name=""
             id="searching"
             placeholder="what do you want to watch"
-            className={`shadow-md transition-all focus:bg-white  duration-[500ms] md:mx-2  md:w-full font-mono linear p-1 pr-8 pl-2 py-3 rounded-lg  outline-none border-2 border-white bg-[transparent] ${searchTerm? 'bg-white':''} text-black text-sm`}
+            className={`shadow-md transition-all focus:bg-white  duration-[500ms] w-[70vw] md:w-full font-mono linear p-1 pr-8 pl-2 py-2 rounded-md  outline-none border-2 text-sm  border-white bg-[transparent] ${searchTerm? 'bg-white':''} text-slate-700 `}
             value={searchTerm}
             onChange={(e) => {
               setSearchClose(false)
@@ -59,20 +55,20 @@ export default function Search () {
             }
         />
         { !searchClose && searched.length > 0 ? 
-        <div className="p-2 relative ">
-        <ul className= " absolute font-popi max-h-[68vh] overflow-scroll w-[80vw] right-0 md:right-0 md:w-full mx-auto items-start p-4  text-sm  bg-white z-[5] flex flex-col mt-[4rem] text-black"> 
+       
+        <ul className= " absolute font-popi max-h-[68vh] overflow-scroll w-[100%] mx-auto  items-start p-4  text-sm  bg-white z-[5] flex flex-col mt-[4rem]  text-black"> 
       { loading?   <span class="loader"></span>:""}
       
       {  searched.map((movie) => (
          
         <li key={movie.id}
         onClick={() => handleMovieTitleClick(movie.title)}
-        className=" border-b-[1px]  w-full md:w-[90%] mx-auto relative px-3 py-3 hover:bg-slate-700 bg-white border-black shadow-inner hover:text-white w-full">
+        className=" border-b-[1px]   w-full md:w-[90%] mx-auto relative px-3 py-3 hover:bg-slate-700 bg-white border-black shadow-inner hover:text-white ">
         <h3> {movie.title} </h3>
         </li>
         ))}
         </ul>
-    </div>
+    
         : '' } 
         
         { searchTerm && !searchClose && searched.length < 1 ?<span className= " absolute  text-center   p-4 gap-5 text-sm w-full right-0   mt-[7rem] bg-white text-black"> No Result</span>:""}
@@ -80,8 +76,8 @@ export default function Search () {
         onClick={() => {
           setSearchClose(true)
           searched.length > 0 ?
-          Navigate("search"): setSearchTerm('')}}className="bg-red-600 block  mt-2 text-sm mx-auto text-lg py-1 px-3 rounded-lg
-          -white">{ searched.length > 0 || !searchTerm  ? 'search':'cancel'} </button>
+          Navigate("search"): setSearchTerm('')}}className="bg-slate-700 block  absolute right-[0] shadow-lg self-center text-[20px] mx-auto text-lg p-2 h-full rounded-r-md border-y-2  border-r-2 border-white 
+          -white">{ searched.length > 0 || !searchTerm  ? <MdSearch />:<MdClose />} </button>
     </div>
     )
 }
