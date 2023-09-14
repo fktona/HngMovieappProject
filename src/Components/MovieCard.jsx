@@ -34,6 +34,7 @@ export default function MovieCard ({movie}) {
       
               <li className=" flex flex-col gap-1 relative justify-between  max-w-[300px] mb-4 p-1  shadow-lg" key={movie.id}
           data-testid="movie-card">
+          
           <img src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
           alt={movie.title}
           className="min-height[70] relative"
