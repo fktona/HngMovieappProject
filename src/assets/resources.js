@@ -41,7 +41,7 @@
  
 // };
 
-import config from '../../config.json';
+import config from '../../access.json';
 
 const apiKey = config.apiKey;
 const bearerToken = config.bearerToken;
