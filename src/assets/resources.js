@@ -43,8 +43,8 @@
 
 import config from '../../access.json';
 
-const apiKey = config.apiKey;
-const bearerToken = config.bearerToken;
+const apiKey = config.apiKey || process.env.apiKey;
+const bearerToken = config.bearerToken || process.env.bearerToken;
 
 // Use apiKey and bearerToken in your API requests
 
