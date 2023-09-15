@@ -1,8 +1,8 @@
 export const resources = async (resourceName, queryParams = {}) => {
   
-  const deployment = true
   
-  const apiKey =  !deployment ? '' :process.env.apiKey
+  
+  const apiKey =   'bba7cc210e16951abaa689f5eaf32d22'
   const endpoint = `https://api.themoviedb.org/3/${resourceName}?${new URLSearchParams(queryParams)}&api_key=${apiKey}`;
 
 
