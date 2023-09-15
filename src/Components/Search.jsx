@@ -7,9 +7,9 @@ import {useNavigate } from "react-router-dom"
 export default function Search () {
   const Navigate = useNavigate()
   const {searched, setSearched ,searchTerm, setSearchTerm} =  useContext(AppContext)
-  //const [searchTerm, setSearchTerm] = useState('');
+  
   const [searchClose, setSearchClose] = useState(true);
-  // const [searched, setSearched] = useState('');
+ 
   const [loading, setLoading] = useState(false);
    
   const handleMovieTitleClick = (title) => {
@@ -23,13 +23,15 @@ export default function Search () {
     async function tryy  () {
       setLoading(true)
     try {
-      const response = await resources('search/movie', { query: searchTerm }); // Fetch search results
+      const response = await resources('search/movie', { query: searchTerm }); 
       setSearched(response.results);
-      console.log(response);
+      
     } catch (error) {
-      console.error('Error fetching search results:', error);
+      
     } finally{
       setLoading(false)
+      !searchTerm ? 
+      Navigate('/'):null
     }
     }
     tryy()
@@ -57,7 +59,7 @@ export default function Search () {
         { !searchClose && searched.length > 0 ? 
        
         <ul className= " absolute font-popi max-h-[68vh] overflow-scroll w-[100%] mx-auto  items-start p-4  text-sm  bg-white z-[5] flex flex-col mt-[4rem]  text-black"> 
-      { loading?   <span class="loader"></span>:""}
+      { loading?   <span className="loader z-[4]"></span>:""}
       
       {  searched.map((movie) => (
          
@@ -76,7 +78,7 @@ export default function Search () {
         onClick={() => {
           setSearchClose(true)
           searched.length > 0 ?
-          Navigate("search"): setSearchTerm('')}}className="bg-slate-700 block  absolute right-[0] shadow-lg self-center text-[20px] mx-auto text-lg p-2 h-full rounded-r-md border-y-2  border-r-2 border-white 
+         Navigate("search"): setSearchTerm('')}}className="bg-slate-700 block  absolute right-[0] shadow-lg self-center text-[20px] mx-auto text-lg p-2 h-full rounded-r-md border-y-2 md:px-7   border-r-2 border-white 
           -white">{ searched.length > 0 || !searchTerm  ? <MdSearch />:<MdClose />} </button>
     </div>
     )

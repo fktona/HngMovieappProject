@@ -15,6 +15,9 @@ export default function MovieSeached ()  {
  
  return (
    
+   
+   
+   
    <div className="p-2 text-center relative ">                 <button
         onClick={() => {
           Navigate('/')
@@ -26,15 +29,16 @@ export default function MovieSeached ()  {
       </button>
 
       {searchTerm ? <>
-      <h2 className="m-4 text-lg font-semibold">Search results</h2>
-      <ul className=" grid grid-cols-2  mx-auto lg:grid-cols-4">
+      <h2 className="m-4 text-lg font-semibold">Search Result(s):  {searchTerm}</h2>
+      <ul className=" grid grid-cols-2 md:grid-cols-3 m mx-auto lg:grid-cols-4">
         {searched.map((movie) => (  
           <MovieCard movie={movie} />
 
         ))}
       </ul>
-      </>:Navigate("/")}
+      </>:""}
     </div>
   );
+ 
  
  }

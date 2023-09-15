@@ -1,5 +1,3 @@
-
-
 import { resources } from '../assets/resources';
 import { MdNavigateNext } from 'react-icons/md';
 import { useLoaderData, useNavigate, Link } from 'react-router-dom';
@@ -12,8 +10,7 @@ export const loadingTopMovie = async () => {
     const topMoviesList = topRatedMoviesData.results.slice(0, 10);
     return topMoviesList;
   } catch (error) {
-    // Handle any errors that may occur during the fetch
-    console.error('Error fetching top-rated movies:', error);
+    
     throw error;
   }
 };
@@ -22,7 +19,7 @@ export default function Homepage() {
   const Navigate = useNavigate();
   const topMovies = useLoaderData();
 
-  console.log(topMovies);
+  
 
   return (
     <div className="relative">
@@ -39,7 +36,8 @@ export default function Homepage() {
         </div>
         <ul className="grid grid-cols-2 p-2 md:grid-cols-3 gap-3 md:place-items-center lg:grid-cols-4">
           {topMovies.map((movie) => (
-            <MovieCard movie={movie} />
+            <MovieCard key={movie.id} 
+            movie={movie} />
           ))}
         </ul>
       </div>
