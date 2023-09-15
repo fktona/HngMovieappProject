@@ -30,8 +30,7 @@ export default function Search () {
       
     } finally{
       setLoading(false)
-      !searchTerm ? 
-      Navigate('/'):null
+     
     }
     }
     tryy()
