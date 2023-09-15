@@ -14,17 +14,13 @@ import {
   Routes,
 } from "react-router-dom";
 
-const router = createHashRouter([
+const router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
     errorElement: <ErrorPage />,
    children:[ 
-    // {
-    //   path:"/",
-    //   element:<Header/>,
-    //   loader:fetchNowPlayingMovies,
-    // },
+
      {
        path:"/",
        element:<Homepage/>,

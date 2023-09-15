@@ -70,10 +70,13 @@ const utcDate = new Date(Date.UTC(year, month, day));
             <p className="shadow-sm p-2  "data-testid="movie-release-date">• Release Date: {utcDate?.toISOString()}</p>
             
             
-            <p className=" shadow-sm p-2"data-testid="movie-runtime">• Runtime: {detailMovie?.runtime}min</p> </div>
+            <p className=" shadow-sm p-2"
+            
+            data-testid="movie-runtime">• Runtime: {detailMovie?.runtime}min</p> </div>
             
             
-            <div className="text-slate-800 relative p-3 text-sm  m-4 font-lato   shadow-md md:max-w-[70vw] mx-auto flex justify-between gap-3 "data-testid="movie-overview">
+            <div className="text-slate-800 relative p-3 text-sm  m-4 font-lato   shadow-md md:max-w-[70vw] mx-auto flex justify-between gap-3 "
+                 data-testid="movie-overview">
            
            <div className="mx-auto font-robo font-semibold flex items-center w-[3rem] md:w-fit bg-red-600 text-white text-2xl relative h-[8rem] left-0 p-2"><p className=" md:rotate-0 md:left-0 left-[-2rem] relative rotate-90">Overview</p>
              
