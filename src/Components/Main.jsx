@@ -1,16 +1,15 @@
-import { resources } from '../assets/resources';
-import { MdNavigateNext } from 'react-icons/md';
-import { useLoaderData, useNavigate, Link } from 'react-router-dom';
-import Header from './Header';
-import MovieCard from './MovieCard';
+import { resources } from "../assets/resources";
+import { MdNavigateNext } from "react-icons/md";
+import { useLoaderData, useNavigate, Link } from "react-router-dom";
+import Header from "./Header";
+import MovieCard from "./MovieCard";
 
 export const loadingTopMovie = async () => {
   try {
-    const topRatedMoviesData = await resources('movie/top_rated', { page: 1 });
+    const topRatedMoviesData = await resources("movie/top_rated", { page: 1 });
     const topMoviesList = topRatedMoviesData.results.slice(0, 10);
     return topMoviesList;
   } catch (error) {
-    
     throw error;
   }
 };
@@ -18,8 +17,6 @@ export const loadingTopMovie = async () => {
 export default function Homepage() {
   const Navigate = useNavigate();
   const topMovies = useLoaderData();
-
-  
 
   return (
     <div className="relative">
@@ -36,8 +33,7 @@ export default function Homepage() {
         </div>
         <ul className="grid grid-cols-2 p-2 md:grid-cols-3 gap-3 md:place-items-center lg:grid-cols-4">
           {topMovies.map((movie) => (
-            <MovieCard key={movie.id} 
-            movie={movie} />
+            <MovieCard key={movie.id} movie={movie} />
           ))}
         </ul>
       </div>
