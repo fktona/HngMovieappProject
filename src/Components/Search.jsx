@@ -3,7 +3,7 @@ import { MdSearch, MdClose, MdMenu } from "react-icons/md";
 import { resources } from "../assets/resources";
 import { AppContext } from "../assets/AppContext";
 import { useNavigate } from "react-router-dom";
-
+import { RingLoader } from 'react-spinners';
 export default function Search() {
   const Navigate = useNavigate();
   const { searched, setSearched, searchTerm, setSearchTerm } =
@@ -49,10 +49,12 @@ export default function Search() {
           setSearchTerm(e.target.value);
         }}
       />
-      {!searchClose && searched.length > 0 ? (
+      {!searchClose && searched.length > 0  ? (
         <ul className=" absolute font-popi max-h-[68vh] overflow-scroll w-[100%] mx-auto  items-start p-4  text-sm  bg-white z-[5] flex flex-col mt-[4rem]  text-black">
-          {loading ? <span className="loader z-[4]"></span> : ""}
-
+                        {loading &&
+                        <div className="fixed z-[15] left-[43%] top-[50%]">
+<RingLoader color="#DC2626" loading={loading} size={100} />
+     </div>}
           {searched.map((movie) => (
             <li
               key={movie.id}

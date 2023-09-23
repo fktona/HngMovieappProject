@@ -2,28 +2,32 @@ import { resources } from "../assets/resources";
 import { useLoaderData, useParams } from "react-router-dom";
 import { useState, useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import { MdWest, MdOutlinePlayCircle } from "react-icons/md";
+import { MdWest, MdOutlinePlayCircle ,MdClose } from "react-icons/md";
+import ReactPlayer from 'react-player';
 import { Link } from "react-router-dom";
 import { FaImdb } from "react-icons/fa6";
 import { GiTomato } from "react-icons/gi";
+import { RingLoader } from 'react-spinners';
 
-let loading;
 export const loadingMovieDetails = async ({ params }) => {
   try {
     const { id } = params;
     const MovieDetailsList = await resources(`movie/${id}`);
-    loading == true;
+   
     return MovieDetailsList;
   } finally {
-    loading == false;
+    
   }
 };
 
 export default function MovieDetails() {
+  const [movieUrl , setMovieUrl] = useState("")
+  const [loading, setLoading] = useState(false);
+  
   const { id } = useParams;
   const detailMovie = useLoaderData();
 
-  detailMovie.id;
+  console.log(detailMovie)
   const dateComponents = detailMovie.release_date.split("-");
   const year = parseInt(dateComponents[0]);
   const month = parseInt(dateComponents[1]) - 1;
@@ -32,26 +36,65 @@ export default function MovieDetails() {
   const utcDate = new Date(Date.UTC(year, month, day));
 
   const Navigate = useNavigate();
+  
+  async function playMovie(id){
+    setLoading(true)
+    try{
+      const response =  await resources(`movie/${id}/videos`)
+      
+      const data = response.results
+      const movieKey = data.find((o)=> o.type=== "Trailer")
+      const youtubePath =`https://www.youtube.com/embed/${movieKey.key || data[0].key}`
+      setMovieUrl(youtubePath)
+
+      
+    }catch(err){
+      return  
+      
+    }finally{
+      setLoading(false)
+    }
+    
+  }
 
   return (
     <div className="  text-black top-0 w-f">
-      {loading ? (
-        <div className="w-[100vw] bg-black"> loadingMovieDetails</div>
-      ) : null}
+      
       <ul className=" ">
         <div className="relative openng w-full " key={detailMovie?.id}>
           <div className=" subhero w-full relative ">
+    
+                        {loading &&
+                        <div className="fixed z-[15] left-[43%] top-[50%]">
+<RingLoader color="#DC2626" loading={loading} size={100} />
+     </div>}
+                     { movieUrl ?
+                     <>
+                   <button onClick= { () => setMovieUrl("")} className="absolute z-[11]  p-2 text-lg top-16 right-8 text-white rounded-full  bg-red-600"><MdClose /></button> 
+      <ReactPlayer
+      key={movieUrl}
+        url={movieUrl}
+        controls
+        playing = {true}
+       width="100%" // Set the width to 100% for full screen
+        height="50vh"
+        className="relative z-[30]"
+      /></>:
+    
+    
             <img
               src={`https://image.tmdb.org/t/p/w780${
                 detailMovie.backdrop_path || ""
               }`}
               alt={detailMovie?.title}
-              className={`relative z-[-1] left-0 top-0 $ w-full h-[50vh] object-cover `}
-            />
+              className={`relative hiddn z-[-1] left-0 top-0 $ w-full h-[50vh] object-cover `}
+            />}
+
 
             <Link
-              to={detailMovie?.homepage}
-              className="absolute w-[10rem] md:w-[15rem] flex items-center justify-center transition duration-500 rounded-full bg-white/[.46] aspect-square mx-auto top-[33%] z-[3] hover:bg-red-600/[.8] left-[35%]"
+              
+              onClick={ () => playMovie(detailMovie.id)}
+              className="absolute w-[10rem] md:w-[15rem] flex items-center justify-center transition duration-500 rounded-full bg-white/[.46] aspect-square mx-auto top-[33%] z-[2] hover:bg-red-600/[.8] left-[35%]"
             >
               <MdOutlinePlayCircle className="text-8xl text-white" />{" "}
             </Link>
@@ -143,6 +186,12 @@ export default function MovieDetails() {
             {detailMovie?.tagline}
           </p>
         </div>
+        <Link to={detailMovie.homepage}
+         
+          className="p-[6px] px-3 my-8 grow text-center  text-xl bg-red-600 shadow-md left-[48%] text-white"
+        >
+          Visit Page
+        </Link>
         <button
           onClick={() => Navigate(-1)}
           className="p-[6px] px-3 my-8 grow text-center relative text-xl bg-red-600 shadow-md left-[48%] text-white"

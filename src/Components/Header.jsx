@@ -6,6 +6,8 @@ import { GiTomato } from "react-icons/gi";
 import { resources } from "../assets/resources";
 import { searchResult } from "../assets/resources";
 import { useLoaderData, useParams } from "react-router-dom";
+import ReactPlayer from 'react-player';
+import { RingLoader } from 'react-spinners';
 
 export default function Header() {
   function getRandomNumber(min, max) {
@@ -24,12 +26,36 @@ export default function Header() {
   const [MoviesList, setMoviesList] = useState([]);
   const [isFadingOut, setIsFadingOut] = useState(false);
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+  
+  const [movieUrl , setMovieUrl] = useState("")
+
+async function playMovie(id){
+    setLoading(true)
+    try{
+      const response =  await resources(`movie/${id}/videos`)
+      console.log(response)
+      const data = response.results
+      const movieKey = data.find((o)=> o.type=== "Trailer")
+      const youtubePath =`https://www.youtube.com/embed/${movieKey.key || data[0].key}`
+      setMovieUrl(youtubePath)
+
+      
+    }catch(err){
+      return  
+      
+    }finally{
+      setLoading(false)
+    }
+    
+  }
+
 
   useEffect(() => {
     async function fetchData() {
       try {
         setLoading(true);
-        const MoviesListData = await resources("movie/popular", { page: 1 });
+        const MoviesListData = await resources("movie/popular", { page: 1});
+        console.log(MoviesListData)
 
         setMoviesList(MoviesListData);
       } catch (err) {
@@ -99,6 +125,25 @@ export default function Header() {
 
   return (
     <div className="relative bg-black md:h-[80vh]  h-[70vh]">
+    
+                        {loading &&
+                        <div className="fixed z-[15] left-[43%] top-[50%]">
+<RingLoader color="#DC2626" loading={loading} size={100} />
+     </div>}
+                     { movieUrl ?
+                     <>
+        <button onClick= { () => setMovieUrl("")} className="absolute z-[11]  p-2 text-lg top-16 right-8 text-white rounded-full  bg-red-600"><MdClose /></button> 
+      <ReactPlayer
+      key={movieUrl}
+        url={movieUrl}
+        controls
+        
+       
+        playing = {true}
+       width="100%" // Set the width to 100% for full screen
+        height="50vh"
+        className="relative z-[10]"
+      /> </>: <>
       {MoviesList.results && MoviesList.results.length > 0 && (
         <div
           className={` ${
@@ -135,13 +180,18 @@ export default function Header() {
               {" "}
               {headerMovie.overview}
             </h2>
-            <button className="relative md:bottom-[5] md:text-lg bg-red-500 px-2 py-1 flex items-center  gap-2 mt-2 drop-shadow-lg font-geor font-bold rounded-md">
+            <button 
+            
+            onClick = {() => playMovie(headerMovie.id)}
+            className="relative md:bottom-[5] md:text-lg bg-red-500 px-2 py-1 flex items-center  gap-2 mt-2 drop-shadow-lg font-geor font-bold rounded-md">
               {" "}
               <AiFillYoutube /> Watch Trailer{" "}
             </button>
           </div>
         </div>
-      )}
+
+
+      )}</>}
     </div>
   );
 }
