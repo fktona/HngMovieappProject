@@ -31,11 +31,18 @@ function FavoritesPage() {
   
   return (
     <div>
+    <button  onClick={()=>{localStorage.removeItem("fav")
+      setFavorites([])}
+    }
+    
+    className="m-6 p-3 relative text-lg m-8 left-[30%] top-8 w-fit bg-red-600">Clear</button>
       <h1>Your Favorite Movies</h1>
       <ul>
-        {favorites.map((movie) => (
+     {favorites?.length >0 ?
+        favorites?.map((movie) => (
             <MovieCard key={movie.id} movie={movie} />
-        ))}
+        )):
+        <p class="text-2xl shadow-md m-8 p-3 w-fit mx-auto">No Favorite found</p>}
       </ul>
     </div>
   );

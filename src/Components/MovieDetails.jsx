@@ -22,6 +22,7 @@ export const loadingMovieDetails = async ({ params }) => {
 
 export default function MovieDetails() {
   const [movieUrl , setMovieUrl] = useState("")
+  const [reviews , setReviews] = useState([])
   const [loading, setLoading] = useState(false);
   
   const { id } = useParams;
@@ -41,11 +42,16 @@ export default function MovieDetails() {
     setLoading(true)
     try{
       const response =  await resources(`movie/${id}/videos`)
+            const response2 =  await resources(`movie/${id}/reviews`)
+            const data2 = response2.results
+     setReviews(data2)
+     console.log(response2)
       
       const data = response.results
       const movieKey = data.find((o)=> o.type=== "Trailer")
       const youtubePath =`https://www.youtube.com/embed/${movieKey.key || data[0].key}`
       setMovieUrl(youtubePath)
+     setReviews(data)
 
       
     }catch(err){
@@ -56,6 +62,7 @@ export default function MovieDetails() {
     }
     
   }
+
 
   return (
     <div className="  text-black top-0 w-f">
@@ -70,7 +77,7 @@ export default function MovieDetails() {
      </div>}
                      { movieUrl ?
                      <>
-                   <button onClick= { () => setMovieUrl("")} className="absolute z-[11]  p-2 text-lg top-16 right-8 text-white rounded-full  bg-red-600"><MdClose /></button> 
+                   <button onClick= { () => setMovieUrl("")} className="absolute z-[50]  p-2 text-lg top-16 right-8 text-white rounded-full  bg-red-600"><MdClose /></button> 
       <ReactPlayer
       key={movieUrl}
         url={movieUrl}
