@@ -124,7 +124,7 @@ async function playMovie(id){
   }${imagePath}`;
 
   return (
-    <div className="relative bg-black md:h-[80vh]  h-[70vh]">
+    <div className="relative bg-black md:min-h-[80vh]  min-h-[70vh]">
     
                         {loading &&
                         <div className="fixed z-[15] left-[43%] top-[50%]">
@@ -155,11 +155,11 @@ async function playMovie(id){
           <img
             src={src}
             alt={headerMovie.title}
-            className="absolute object-cover w-full md:h-[80vh] h-[70vh]"
+            className="absolute object-cover w-full h-full"
           />
 
-          <div className="text-white flex flex-col justify-end items-start  h-full w-full md:p-[70px] absolute  py-4 px-3 z-[2] bottom-8">
-            <h2 className=" text-2xl   md:bottom-[5] w-[50%] leading-[24px md:leading-normal mb-2 md:text-[35px] md:mb-4  font-bold font-geor  relative">
+          <div className="text-white flex flex-col justify-end items-start  h-full w-full md:px-[70px] absolute gap-5  py-4 px-3 z-[2] bottom-4">
+            <h2 className=" text-2xl    w-[50%] leading-[24px md:leading-normal mb-2 md:text-[35px] md:mb-4  font-bold font-geor  relative">
               {" "}
               {headerMovie.title}
             </h2>
