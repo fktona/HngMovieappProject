@@ -158,7 +158,7 @@ async function playMovie(id){
             className="absolute object-cover w-full md:h-[80vh] h-[70vh]"
           />
 
-          <div className="text-white flex flex-col justify-end items-start  h-full w-full md:p-4 absolute  py-4 px-3 z-[2] bottom-8">
+          <div className="text-white flex flex-col justify-end items-start  h-full w-full md:p-[70px] absolute  py-4 px-3 z-[2] bottom-8">
             <h2 className=" text-2xl   md:bottom-[5] w-[50%] leading-[24px md:leading-normal mb-2 md:text-[35px] md:mb-4  font-bold font-geor  relative">
               {" "}
               {headerMovie.title}
