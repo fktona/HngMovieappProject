@@ -7,7 +7,7 @@ import { resources } from "./assets/resources";
 export default function App() {
   console.log('true')
   return (
-    <div>
+    <div className='mx-w-[1440px] relative mx-auto'>
       <RootLayout />
     </div>
   );
