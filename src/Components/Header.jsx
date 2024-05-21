@@ -26,27 +26,27 @@ export default function Header() {
   const [MoviesList, setMoviesList] = useState([]);
   const [isFadingOut, setIsFadingOut] = useState(false);
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
-  
-  const [movieUrl , setMovieUrl] = useState("")
 
-async function playMovie(id){
+  const [movieUrl, setMovieUrl] = useState("")
+
+  async function playMovie(id) {
     setLoading(true)
-    try{
-      const response =  await resources(`movie/${id}/videos`)
+    try {
+      const response = await resources(`movie/${id}/videos`)
       console.log(response)
       const data = response.results
-      const movieKey = data.find((o)=> o.type=== "Trailer")
-      const youtubePath =`https://www.youtube.com/embed/${movieKey.key || data[0].key}`
+      const movieKey = data.find((o) => o.type === "Trailer")
+      const youtubePath = `https://www.youtube.com/embed/${movieKey.key || data[0].key}`
       setMovieUrl(youtubePath)
 
-      
-    }catch(err){
-      return  
-      
-    }finally{
+
+    } catch (err) {
+      return
+
+    } finally {
       setLoading(false)
     }
-    
+
   }
 
 
@@ -54,7 +54,7 @@ async function playMovie(id){
     async function fetchData() {
       try {
         setLoading(true);
-        const MoviesListData = await resources("movie/popular", { page: 1});
+        const MoviesListData = await resources("movie/popular", { page: 1 });
         console.log(MoviesListData)
 
         setMoviesList(MoviesListData);
@@ -119,79 +119,81 @@ async function playMovie(id){
     ? headerMovie.poster_path
     : headerMovie.backdrop_path;
 
-  const src = `https://image.tmdb.org/t/p/${
-    isMobile ? "w500" : "w780"
-  }${imagePath}`;
+  const src = `https://image.tmdb.org/t/p/${isMobile ? "w500" : "w780"
+    }${imagePath}`;
 
   return (
-    <div className="relative bg-black md:min-h-[80vh]  min-h-[70vh]">
-    
-                        {loading &&
-                        <div className="fixed z-[15] left-[43%] top-[50%]">
-<RingLoader color="#DC2626" loading={loading} size={100} />
-     </div>}
-                     { movieUrl ?
-                     <>
-        <button onClick= { () => setMovieUrl("")} className="absolute z-[11]  p-2 text-lg top-16 right-8 text-white rounded-full  bg-red-600"><MdClose /></button> 
-      <ReactPlayer
-      key={movieUrl}
-        url={movieUrl}
-        controls
-        
-       
-        playing = {true}
-       width="100%" // Set the width to 100% for full screen
-        height="50vh"
-        className="relative z-[10]"
-      /> </>: <>
-      {MoviesList.results && MoviesList.results.length > 0 && (
-        <div
-          className={` ${
-            isFadingOut ? "fadeOut " : "ani"
-          } absolute w-full h-full  subhero `}
-        >
-          {loading ? <span class="loader"></span> : ""}
+    <div className="relative bg-black md:min-h-[80vh]  min-h-[70vh] mb-[50px] py-4">
 
-          <img
-            src={src}
-            alt={headerMovie.title}
-            className="absolute object-cover w-full h-full"
-          />
+      {loading &&
+        <div className="fixed z-[15] left-[43%] top-[50%]">
+          <RingLoader color="#DC2626" loading={loading} size={100} />
+        </div>}
+      {movieUrl ?
+        <div className="">
+          <button onClick={() => setMovieUrl("")} className="absolute z-[11]  p-2 text-lg top-16 right-8 text-white rounded-full  bg-red-600"><MdClose /></button>
+          <ReactPlayer
+            key={movieUrl}
+            url={movieUrl}
+            controls
 
-          <div className="text-white flex flex-col justify-end items-start  h-full w-full md:px-[70px] absolute gap-5  py-4 px-3 z-[2] bottom-4">
-            <h2 className=" text-2xl    w-[50%] leading-[24px md:leading-normal mb-2 md:text-[35px] md:mb-4  font-bold font-geor  relative">
-              {" "}
-              {headerMovie.title}
-            </h2>
-            <p className="flex gap-8 justify-between flex-row-reverse font-popi  items-center">
-              <span className="flex items-center gap-2 m-2 ">
-                <GiTomato className="text-3xl text-red-600" />
-                {headerMovie.popularity > 100
-                  ? "100"
-                  : Math.floor(headerMovie.popularity)}
-                %
-              </span>{" "}
-              <span className="flex items-center gap-2 m-2 ">
-                <FaImdb className="bg-[#F4C611]  text-black text-3xl" />{" "}
-                {headerMovie.vote_average}
-              </span>
-            </p>
-            <h2 className="w-[50%] md:bottom-[5] md:text-[14px] text-[10px] md:leading-normal font-lato leading-[10px] font-bold relative">
-              {" "}
-              {headerMovie.overview}
-            </h2>
-            <button 
+
+            playing={true}
+            width="100%" // Set the width to 100% for full screen
+            height="80vh"
+            className="relative min-h-full w-full z-[10]"
+          /> </div> : <>
+          {MoviesList.results && MoviesList.results.length > 0 && (
+            <div
+              className={` ${isFadingOut ? "fadeOut " : "ani"
+                } absolute w-full h-full  subhero `}
+            >
+              {loading ? <span class="loader"></span> : ""}
+
             
-            onClick = {() => playMovie(headerMovie.id)}
-            className="relative md:bottom-[5] md:text-lg bg-red-500 px-2 py-1 flex items-center  gap-2 mt-2 drop-shadow-lg font-geor font-bold rounded-md">
-              {" "}
-              <AiFillYoutube /> Watch Trailer{" "}
-            </button>
-          </div>
-        </div>
+
+              <div className="text-white flex flex-col justify-center mt-[30px]
+               items-start h-full w-full md:px-[70px] relative gap-2  py-4 px-5 z-[2] ">
+                  <img
+                src={src}
+                alt={headerMovie.title}
+                className="absolute object-cover w-full h-full left-0"
+              />
+                <h2 className=" text-2xl lg:w-[50%]   w-[70%]  md:leading-normal mb-2 md:text-[35px]
+                 md:mb-4  font-bold font-geor  relative">
+                  {" "}
+                  {headerMovie.title}
+                </h2>
+                <p className="flex gap-8 justify-between flex-row-reverse font-popi  items-center">
+                  <span className="flex items-center gap-2 m-2 ">
+                    <GiTomato className="text-3xl text-red-600" />
+                    {headerMovie.popularity > 100
+                      ? "100"
+                      : Math.floor(headerMovie.popularity)}
+                    %
+                  </span>{" "}
+                  <span className="flex items-center gap-2 m-2 ">
+                    <FaImdb className="bg-[#F4C611]  text-black text-3xl" />{" "}
+                    {headerMovie.vote_average}
+                  </span>
+                </p>
+                <h2 className="lg:w-[50%] w-[70%] md:bottom-[5] md:text-[20px]
+                 text-[16px] md:leading-normal font-lato leading-[10px]  relative">
+                  {" "}
+                  {headerMovie.overview}
+                </h2>
+                <button
+
+                  onClick={() => playMovie(headerMovie.id)}
+                  className="relative md:bottom-[5] md:text-lg bg-red-500 px-2 py-1 flex items-center  gap-2 mt-2 drop-shadow-lg font-geor font-bold rounded-md">
+                  {" "}
+                  <AiFillYoutube /> Watch Trailer{" "}
+                </button>
+              </div>
+            </div>
 
 
-      )}</>}
+          )}</>}
     </div>
   );
 }

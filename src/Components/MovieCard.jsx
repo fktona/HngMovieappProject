@@ -21,7 +21,7 @@ export default function MovieCard({ movie }) {
     const updatedFav = storedFav.filter((item) => item !== title);
     setPopupMessage(`${title} removed from favorites`);
 
-    // Save the updatedFav array to local storage
+    // Save the updatedFav array to local storages
     localStorage.setItem('fav', JSON.stringify(updatedFav));
 
     // Update the state with the new favorites array
@@ -29,7 +29,7 @@ export default function MovieCard({ movie }) {
   } else {
     // Item is not in favorites, add it
     const updatedFav = [...storedFav, title];
-    setPopupMessage(`${title} added to favorites`);
+    setPopupMessage(`${title.title} added to favorites`);
 
     // Save the updatedFav array to local storage
     localStorage.setItem('fav', JSON.stringify(updatedFav));

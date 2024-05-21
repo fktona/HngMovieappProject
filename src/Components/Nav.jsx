@@ -10,7 +10,7 @@ export default function Nav() {
   const [searchTerm, setSearchTerm] = useState("");
 
   return (
-    <div className="w-full font-mono bg-black/[.5] z-[8] fixed p-1 top-0 md:p-4 flex items-center gap-2 md:gap-8 justify-between font-semibold text-md text-white">
+    <div className="w-full max-w-[1440px] font-mono bg-black/[.5] z-[8] fixed p-1 top-0 md:p-4 flex items-center gap-2 md:gap-8 justify-between font-semibold text-md text-white">
       <div className="z-[2] flex gap-1 text-3 xl items-center relative">
         <span className="bg-red-600 p-1 text-xl rounded-xl ">
           <PiTelevision />

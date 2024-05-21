@@ -65,7 +65,7 @@ export default function MovieDetails() {
 
 
   return (
-    <div className="  text-black top-0 w-f">
+    <div className="  text-black top-0 w-full">
       
       <ul className=" ">
         <div className="relative openng w-full " key={detailMovie?.id}>
@@ -76,7 +76,7 @@ export default function MovieDetails() {
 <RingLoader color="#DC2626" loading={loading} size={100} />
      </div>}
                      { movieUrl ?
-                     <>
+                     <div className='relative min-h-[80vh]'>
                    <button onClick= { () => setMovieUrl("")} className="absolute z-[50]  p-2 text-lg top-16 right-8 text-white rounded-full  bg-red-600"><MdClose /></button> 
       <ReactPlayer
       key={movieUrl}
@@ -84,27 +84,30 @@ export default function MovieDetails() {
         controls
         playing = {true}
        width="100%" // Set the width to 100% for full screen
-        height="50vh"
+        height="70vh"
         className="relative z-[30]"
-      /></>:
+      /></div>:
     
-    
+           <div className='relative bg-red-900'>
             <img
               src={`https://image.tmdb.org/t/p/w780${
                 detailMovie.backdrop_path || ""
               }`}
               alt={detailMovie?.title}
-              className={`relative hiddn z-[-1] left-0 top-0 $ w-full h-[50vh] object-cover `}
-            />}
+              className={`relative   left-0 top-0  w-full lg:h-[80vh] h-[50vh] object-fit `}
+            />
 
-
+          <div className='absolute w-full h-full top-0 flex justify-center items-center z-[2]'>
             <Link
               
               onClick={ () => playMovie(detailMovie.id)}
-              className="absolute w-[10rem] md:w-[15rem] flex items-center justify-center transition duration-500 rounded-full bg-white/[.46] aspect-square mx-auto top-[33%] z-[2] hover:bg-red-600/[.8] left-[35%]"
+              className=" w-[10rem] md:w-[15rem] top-0  flex items-center justify-center transition
+               duration-500 rounded-full bg-black aspect-square mx-auto   hover:bg-red-600/[.8]"
             >
               <MdOutlinePlayCircle className="text-8xl text-white" />{" "}
             </Link>
+            </div>
+            </div>}
           </div>
           <div className="relative md:flex items-center justify-around p-3">
             <h3
@@ -159,7 +162,7 @@ export default function MovieDetails() {
             </div>{" "}
             {detailMovie?.overview}
           </div>
-          <div className="flex flex-col justify-center items-center w-fit mx-auto">
+          <div className="flex flex-col justify-center items-center w-full mx-auto">
             <p className="flex p-3 justify-center items-center gap-2 text-xl font-mono flex-wrap font-semibold">
               {" "}
               Language:{" "}
@@ -193,18 +196,20 @@ export default function MovieDetails() {
             {detailMovie?.tagline}
           </p>
         </div>
+        <div className=' relative w-full flex items-center justify-around'>
         <Link to={detailMovie.homepage}
          
-          className="p-[6px] px-3 my-8 grow text-center  text-xl bg-red-600 shadow-md left-[48%] text-white"
+          className="p-[6px] px-3 my-8 text-center  text-xl bg-red-600 shadow-md  text-white"
         >
           Visit Page
         </Link>
         <button
           onClick={() => Navigate(-1)}
-          className="p-[6px] px-3 my-8 grow text-center relative text-xl bg-red-600 shadow-md left-[48%] text-white"
+          className=" text-center relative text-xl bg-red-600 shadow-md  p-[6px] px-3 text-white"
         >
           <MdWest />
         </button>
+        </div>
       </ul>
     </div>
   );

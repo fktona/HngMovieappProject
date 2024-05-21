@@ -10,7 +10,7 @@ export default function RootLayout() {
   const [searchTerm, setSearchTerm] = useState("");
 
   return (
-    <div className="relative">
+    <div className="relative mx-auto max-w-[1440px]">
       <AppContext.Provider
         value={{ searched, setSearched, searchTerm, setSearchTerm }}
       >
